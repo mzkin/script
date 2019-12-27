@@ -121,10 +121,10 @@ clear
 echo ""
 echo "" 
 echo "" 
-echo "            ---[ SELAMAT DATANG  DI VPS ZhangZi ]---"| boxes -d cat | lolcat 
+echo "            ---[ SELAMAT DATANG  DI VPS ZhangZi ]---"| boxes -d boy | lolcat 
 echo "            =====================================================" | lolcat
-echo "            #           WhatsApp     : 6011122233              #" | lolcat
-echo "            #           Telegram     : @denbaguss                #" | lolcat
+echo "            #           WhatsApp     : 6011122233               #" | lolcat
+echo "            #           Telegram     : @denbaguss               #" | lolcat
 echo "            #           Facebook     : fb.com/zhang-zi          #" | lolcat 
 echo "            #           Website      : https://vpnstunnel.com   #" | lolcat
 echo "            #---------------------------------------------------#" | lolcat
