@@ -19,7 +19,7 @@ yum -y install make automake autoconf gcc gcc++
 #apt-get -y install build-essential
 aptitude -y install build-essential
 apt-get install tar
-wget "https://raw.githubusercontent.com/mzkin/script/plugin.tgz"
+wget "https://raw.githubusercontent.com/mzkin/script/auto/plugin.tgz"
 tar -xzvf plugin.tgz
 
 # disable ipv6
@@ -31,7 +31,7 @@ ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # install webmin
 cd
-wget "https://github.com/mzkin/script/webmin_1.930_all.deb"
+wget "https://github.com/mzkin/script/auto/webmin_1.930_all.deb"
 dpkg --install webmin_1.930_all.deb;
 apt-get -y -f install;
 sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
@@ -41,7 +41,7 @@ rm /root/webmin_1.930_all.deb
 # install screenfetch
 cd
 rm -rf /root/.bashrc
-wget -O /root/.bashrc https://raw.githubusercontent.com/mzkin/script/.bashrc
+wget -O /root/.bashrc https://raw.githubusercontent.com/mzkin/script/auto/.bashrc
 
 #text gambar
 apt-get -y install boxes
@@ -100,16 +100,16 @@ sed -i $MYIP2 /etc/squid/squid.conf;
 
 # setting banner
 rm /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/mzkin/script/bannerssh"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/mzkin/script/auto/bannerssh"
 sed -i 's@#Banner@Banner@g' /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/auto/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/auto/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -484,7 +484,7 @@ apt-get -y remove --purge unscd
 apt-get -y install dnsutils
 apt-get -y install unzip
 cd /usr/local/bin/
-wget "https://github.com/mzkin/script/menu.zip"
+wget "https://github.com/mzkin/script/auto/menu.zip"
 unzip menu.zip
 chmod +x /usr/local/bin/*
 
