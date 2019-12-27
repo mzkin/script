@@ -107,9 +107,9 @@ sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dr
 /etc/init.d/dropbear restart
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/auto/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/raw/auto/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/auto/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/raw/auto/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
