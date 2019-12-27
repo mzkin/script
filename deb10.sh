@@ -19,7 +19,7 @@ apt install openvpn php7.3-fpm stunnel4 squid3 dropbear vnstat ufw build-essenti
 echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
 
 yum -y install make automake autoconf gcc gcc++
-wget "https://raw.githubusercontent.com/emue25/VPSauto/master/tool/plugin.tgz"
+wget "https://raw.githubusercontent.com/mzkin/script/auto/plugin.tgz"
 tar -xzvf plugin.tgz
 
 # set time GMT +8
@@ -27,7 +27,7 @@ ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # install webmin
 cd
-wget "https://github.com/emue25/VPSauto/raw/master/webmin_1.930_all.deb"
+wget "https://github.com/mzkin/script/auto/webmin_1.930_all.deb"
 dpkg --install webmin_1.930_all.deb;
 apt-get -y -f install;
 sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
@@ -37,7 +37,7 @@ rm /root/webmin_1.930_all.deb
 # install screenfetch
 cd
 rm -rf /root/.bashrc
-wget -O /root/.bashrc https://raw.githubusercontent.com/emue25/cream/mei/.bashrc
+wget -O /root/.bashrc https://raw.githubusercontent.com/mzkin/script/auto/.bashrc
 
 #text gambar
 apt install boxes
@@ -92,16 +92,16 @@ sed -i $MYIP2 /etc/squid/squid.conf;
 
 # setting banner
 rm /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/emue25/cream/mei/bannerssh"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/mzkin/script/auto/bannerssh"
 sed -i 's@#Banner@Banner@g' /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://github.com/emue25/AutoScriptDebianStretch/raw/master/Files/Plugins/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/raw/auto/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://github.com/emue25/AutoScriptDebianStretch/raw/master/Files/Plugins/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://github.com/mzkin/script/raw/auto/Plugins/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -202,7 +202,7 @@ iptables-restore < /etc/iptables.up.rules
 
 #Create Admin
 useradd admin
-echo "admin:kopet" | chpasswd
+echo "admin:mania" | chpasswd
 
 
 # Create and Configure rc.local
@@ -220,7 +220,7 @@ apt-get -y remove --purge unscd
 apt-get -y install dnsutils
 apt-get -y install unzip
 cd /usr/local/bin/
-wget "https://github.com/emue25/cream/raw/mei/menu.zip"
+wget "https://github.com/mzkin/script/raw/auto/menu.zip"
 unzip menu.zip
 chmod +x /usr/local/bin/*
 
