@@ -490,7 +490,7 @@ apt-get -y remove --purge unscd
 apt-get -y install dnsutils
 apt-get -y install unzip
 cd /usr/local/bin/
-wget "https://github.com/mzkin/script/auto/menu.zip"
+wget "https://github.com/mzkin/script/raw/auto/menu.zip"
 unzip menu.zip
 chmod +x /usr/local/bin/*
 
