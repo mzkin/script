@@ -42,8 +42,8 @@ wget -O /root/.bashrc https://raw.githubusercontent.com/mzkin/script/auto/.bashr
 #text gambar
 apt install boxes
 # text pelangi
-sudo apt install ruby
-sudo apt gem install lolcat
+apt install ruby
+sudo gem install lolcat
 
 # install dropbear
 sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
@@ -271,20 +271,17 @@ echo "                                 -modifikasi by zhangzi-                  
 echo "--------------------------------------------------------------------------------"
 echo ""  | tee -a log-install.txt
 echo "Server Information"  | tee -a log-install.txt
-echo "   - Timezone    : Asia/Malingsial asu (GMT +8)"  | tee -a log-install.txt
+echo "   - Timezone    : Asia/Malasia (GMT +8)"  | tee -a log-install.txt
 echo "   - Fail2Ban    : [ON]"  | tee -a log-install.txt
 echo "   - IPtables    : [ON]"  | tee -a log-install.txt
 echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN		: TCP 55 "  | tee -a log-install.txt
-echo "   - OpenVPN-SSL   	: 444 "  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
 echo "   - Stunnel		: 443"  | tee -a log-install.txt
 echo "   - BadVPN  	: 7300"  | tee -a log-install.txt
 echo "   - Squid Proxy	: 8080, 8000, 3128, 80 (limit to IP Server)"  | tee -a log-install.txt
-echo "   - Nginx		: 85"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Premium Script Information"  | tee -a log-install.txt
@@ -292,7 +289,6 @@ echo "   To display list of commands: menu"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Important Information"  | tee -a log-install.txt
-echo "   - Download Config OpenVPN : http://$MYIP/configs.zip"  | tee -a log-install.txt
 echo "   - Installation Log        : cat /root/log-install.txt"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "   - Webmin                  : http://$MYIP:10000/"  | tee -a log-install.txt
