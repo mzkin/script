@@ -287,9 +287,9 @@ script-security 2
 cipher none
 auth none
 END
-echo '<ca>' >> /home/vps/public_html/zhangzi.ovpn
-cat /etc/openvpn/ca.crt >> /home/vps/public_html/zhangzi.ovpn
-echo '</ca>' >> /home/vps/public_html/zhangzi.ovpn
+echo '<ca>' >> /home/vps/public_html/sshfast.ovpn
+cat /etc/openvpn/ca.crt >> /home/vps/public_html/sshfast.ovpn
+echo '</ca>' >> /home/vps/public_html/sshfast.ovpn
 
 # Configure Stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
@@ -499,7 +499,7 @@ vnstat -u -i eth0
 
 # compress configs
 cd /home/vps/public_html
-zip configs.zip zhangzi.ovpn
+zip configs.zip sshfast.ovpn
 
 # install ddos deflate
 cd
