@@ -490,8 +490,8 @@ apt-get -y remove --purge unscd
 apt-get -y install dnsutils
 apt-get -y install unzip
 cd /usr/local/bin/
-wget "https://github.com/mzkin/script/raw/auto/menu.zip"
-unzip menu.zip
+wget "https://github.com/mzkin/script/raw/auto/menuprem.zip"
+unzip menuprem.zip
 chmod +x /usr/local/bin/*
 
 # cronjob
