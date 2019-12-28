@@ -31,7 +31,7 @@ ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime
 
 # install webmin
 cd
-wget "https://github.com/mzkin/script/auto/webmin_1.930_all.deb"
+wget "https://github.com/mzkin/script/raw/auto/webmin_1.930_all.deb"
 dpkg --install webmin_1.930_all.deb;
 apt-get -y -f install;
 sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
@@ -59,7 +59,13 @@ sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 777 -p 110"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 /etc/init.d/dropbear restart
-
+#upgrade
+apt-get install zlib1g-dev
+wget https://raw.githubusercontent.com/mzkin/script/auto/dropbear-2019.78.tar.bz2
+bzip2 -cd dropbear-2019.78.tar.bz2 | tar xvf -
+cd dropbear-2019.78
+./configure
+make && make install
 # install squid3
 cat > /etc/squid/squid.conf <<-END
 acl localhost src 127.0.0.1/32 ::1
