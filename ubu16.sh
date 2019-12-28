@@ -23,7 +23,7 @@ apt-get install yum
 yum -y install make automake autoconf gcc gcc++
 aptitude -y install build-essential
 apt-get install tar
-wget "https://raw.githubusercontent.com/emue25/VPSauto/master/tool/plugin.tgz"
+wget "https://raw.githubusercontent.com/mzkin/script/auto/plugin.tgz"
 tar -xzvf plugin.tgz
 
 # disable ipv6
@@ -37,7 +37,7 @@ sudo gem install lolcat
 #screen
 cd
 rm -rf /root/.bashrc
-wget -O /root/.bashrc "https://raw.githubusercontent.com/emue25/cream/mei/.bashrc"
+wget -O /root/.bashrc "https://raw.githubusercontent.com/mzkin/script/auto/.bashrc"
 # setting port ssh
 sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
 sed -i '/Port 22/a Port  90' /etc/ssh/sshd_config
@@ -51,17 +51,18 @@ sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=442/g' /etc/default/dropbear
 sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 777"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 /etc/init.d/dropbear restart
+
 # setting banner
 rm /etc/issue.net
-wget -O /etc/issue.net "https://raw.githubusercontent.com/emue25/cream/mei/bannerssh"
+wget -O /etc/issue.net "https://raw.githubusercontent.com/mzkin/script/auto/bannerssh"
 sed -i 's@#Banner@Banner@g' /etc/ssh/sshd_config
 sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/issue.net"@g' /etc/default/dropbear
 /etc/init.d/ssh restart
 /etc/init.d/dropbear restart
 # install badvpn
-wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/daybreakersx/premscript/master/badvpn-udpgw"
+wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/mzkin/script/auto/badvpn-udpgw"
 if [ "$OS" == "x86_64" ]; then
-  wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/daybreakersx/premscript/master/badvpn-udpgw64"
+  wget -O /usr/bin/badvpn-udpgw "https://raw.githubusercontent.com/mzkin/script/auto/badvpn-udpgw64"
 fi
 sed -i '$ i\screen -AmdS badvpn badvpn-udpgw --listen-addr 127.0.0.1:7300' /etc/rc.local
 chmod +x /usr/bin/badvpn-udpgw
@@ -221,7 +222,7 @@ refresh_pattern ^ftp: 1440 20% 10080
 refresh_pattern ^gopher: 1440 0% 1440
 refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
 refresh_pattern . 0 20% 4320
-visible_hostname jeromelaliag
+visible_hostname sshfast.net
 END
 sed -i $IPADD /etc/squid/squid.conf;
 # setting iptables
@@ -324,13 +325,13 @@ sed -i 's|#net.ipv4.ip_forward=1|net.ipv4.ip_forward=1|' /etc/sysctl.conf
 
 #Create Admin
 useradd admin
-echo "admin:kopet" | chpasswd
+echo "admin:mania" | chpasswd
 # download script
 cd
 #wget https://raw.githubusercontent.com/emue25/cream/mei/install-premiumscript.sh -O - -o /dev/null|sh
 apt-get install unzip
 cd /usr/local/bin/
-wget "https://github.com/emue25/cream/raw/mei/menu.zip"
+wget "https://github.com/mzkin/script/raw/auto/menu.zip"
 unzip menu.zip
 chmod +x /usr/local/bin/*
 # cronjob
