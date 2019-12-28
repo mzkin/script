@@ -267,7 +267,7 @@ END
 systemctl start openvpn@server3.service
 #Create OpenVPN Config
 mkdir -p /home/vps/public_html
-cat > /home/vps/public_html/zhangzi.ovpn <<-END
+cat > /home/vps/public_html/sshfast.ovpn <<-END
 # Created by kopet
 auth-user-pass
 client
@@ -490,8 +490,8 @@ apt-get -y remove --purge unscd
 apt-get -y install dnsutils
 apt-get -y install unzip
 cd /usr/local/bin/
-wget "https://github.com/mzkin/script/raw/auto/menuprem.zip"
-unzip menuprem.zip
+wget "https://github.com/mzkin/script/raw/auto/menu.zip"
+unzip menu.zip
 chmod +x /usr/local/bin/*
 
 # cronjob
