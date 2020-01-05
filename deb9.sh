@@ -1,6 +1,50 @@
 #!/bin/sh
 #Script by ZhangZi
+# initialisasi var
+MYIP=$(wget -qO- ipv4.icanhazip.com);
+MYIP2="s/xxxxxxxxx/$MYIP/g";
+cd /root
 
+# check registered ip
+wget -q -O IP https://raw.githubusercontent.com/mzkin/script/auto/IP.txt
+if ! grep -w -q $MYIP IP; then
+	echo "Sorry bosku, Only IP ready register can use this script!"
+        echo "     
+                       
+               =============== OS-DEBIAN-9-64-bit ============
+               ♦                                             ♦
+               ♦     AUTOSCRIPT CREATED BY VPNSTUNNEL        ♦
+	       ♦                     &                       ♦
+	       ♦                 ZHANG-ZI                    ♦
+               ♦     -----------Contact Us------------       ♦ 
+               ♦            Tel : +601122334455              ♦
+               ♦         { Sms/whatsapp/telegram }           ♦ 
+               ♦           http://t.me/denbaguss             ♦    
+               ♦     ------------Channel Tel----------       ♦
+               ♦                                             ♦
+                ================ OS- 64-bit =================
+               
+                 Please make payment before use auto script
+                 ==========================================
+                 ♦          Price: Rm.30 = 1IP            ♦
+                 ♦          *****************             ♦
+                 ♦          *****************             ♦
+                 ♦           Maybank Account              ♦
+                 ♦                 &                      ♦
+                 ♦               Paypall                  ♦
+                 ♦           =================            ♦
+                 ♦          Contact:  admin               ♦
+                 ♦          Name   : denbaguss            ♦
+                 ==========================================  
+                          Thank You For Choice Us"
+
+	echo "        Contact: editor ( vpnstunnel.com atau denbaguss)"
+	
+	rm /root/IP
+	rm deb9.sh
+	rm -f /root/IP
+	exit
+fi
 wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
 sleep 2
 echo "deb http://build.openvpn.net/debian/openvpn/release/2.4 stretch main" > /etc/apt/sources.list.d/openvpn-aptrepo.list
@@ -132,7 +176,7 @@ sed -i 's|export KEY_CITY="SanFrancisco"|export KEY_CITY="Purworejo"|' /etc/open
 sed -i 's|export KEY_ORG="Fort-Funston"|export KEY_ORG="denbaguss"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_EMAIL="me@myhost.mydomain"|export KEY_EMAIL="vpnstunnel@email.com"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_OU="MyOrganizationalUnit"|export KEY_OU="ZhangZi"|' /etc/openvpn/easy-rsa/vars
-sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="sshfast"|' /etc/openvpn/easy-rsa/vars
+sed -i 's|export KEY_NAME="EasyRSA"|export KEY_NAME="vpnshock"|' /etc/openvpn/easy-rsa/vars
 sed -i 's|export KEY_OU=changeme|export KEY_OU=ZhangZi|' /etc/openvpn/easy-rsa/vars
 #Create Diffie-Helman Pem
 openssl dhparam -out /etc/openvpn/dh1024.pem 1024
@@ -196,7 +240,7 @@ systemctl start openvpn@server.service
 
 #Server2
 cat > /etc/openvpn/server2.conf <<-END
-port 443
+port 80
 proto tcp
 dev tun
 ca ca.crt
@@ -267,13 +311,13 @@ END
 systemctl start openvpn@server3.service
 #Create OpenVPN Config
 mkdir -p /home/vps/public_html
-cat > /home/vps/public_html/sshfast.ovpn <<-END
+cat > /home/vps/public_html/vpnstunnel.ovpn <<-END
 # Created by kopet
 auth-user-pass
 client
 dev tun
 proto tcp
-remote $MYIP 443
+remote $MYIP 55
 http-proxy $MYIP 8080
 persist-key
 persist-tun
@@ -293,9 +337,9 @@ script-security 2
 cipher none
 auth none
 END
-echo '<ca>' >> /home/vps/public_html/sshfast.ovpn
-cat /etc/openvpn/ca.crt >> /home/vps/public_html/sshfast.ovpn
-echo '</ca>' >> /home/vps/public_html/sshfast.ovpn
+echo '<ca>' >> /home/vps/public_html/vpnstunnel.ovpn
+cat /etc/openvpn/ca.crt >> /home/vps/public_html/vpnstunnel.ovpn
+echo '</ca>' >> /home/vps/public_html/vpnstunnel.ovpn
 
 # Configure Stunnel
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
@@ -308,7 +352,7 @@ socket = r:TCP_NODELAY=1
 client = no
 
 [dropbear]
-accept = 80
+accept = 443
 connect = 127.0.0.1:442
 cert = /etc/stunnel/stunnel.pem
 [squid]
@@ -505,7 +549,7 @@ vnstat -u -i eth0
 
 # compress configs
 cd /home/vps/public_html
-zip configs.zip sshfast.ovpn
+zip configs.zip vpnstunnel.ovpn
 
 # install ddos deflate
 cd
@@ -553,9 +597,9 @@ echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
 echo "   - IPv6        : [OFF]"  | tee -a log-install.txt
 echo ""  | tee -a log-install.txt
 echo "Application & Port Information"  | tee -a log-install.txt
-echo "   - OpenVPN		: TCP 55, 443, 1195"  | tee -a log-install.txt
+echo "   - OpenVPN		: TCP 55, 80, 1195"  | tee -a log-install.txt
 echo "   - Dropbear		: 442"  | tee -a log-install.txt
-echo "   - Stunnel		: 80, 8888"  | tee -a log-install.txt
+echo "   - Stunnel		: 443, 8888"  | tee -a log-install.txt
 echo "   - BadVPN  	: 7300"  | tee -a log-install.txt
 echo "   - Squid Proxy	: 8080, 8000, 3128, 81 (limit to IP Server)"  | tee -a log-install.txt
 echo "   - Nginx		: 85"  | tee -a log-install.txt
