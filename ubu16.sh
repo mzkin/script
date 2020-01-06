@@ -1,13 +1,9 @@
 #!/bin/sh
 # Script Created kopet
 # initialisasi var
-export DEBIAN_FRONTEND=noninteractive
-OS=`uname -m`;
-#MYIP=$(wget -qO- ipv4.icanhazip.com);
-
-# ipvp
-IPADDRESS=`ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{print $1}' | head -1`
-IPADD="s/ipaddresxxx/$IPADDRESS/g";
+MYIP=$(wget -qO- ipv4.icanhazip.com);
+MYIP2="s/xxxxxxxxx/$MYIP/g";
+cd /root
 
 # check registered ip
 wget -q -O IP https://raw.githubusercontent.com/mzkin/script/auto/IP.txt
@@ -46,14 +42,12 @@ if ! grep -w -q $MYIP IP; then
 	rm -f /root/IP
 	exit
 fi
-# go to root
-cd /root
 
-# clean
-apt-get clean
 # update
 apt-get update
 apt-get upgrade -y
+# clean
+apt-get clean
 # install needs
 apt-get -y install stunnel4 apache2 openvpn easy-rsa ufw fail2ban zip -y
 #plg
