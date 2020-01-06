@@ -3,13 +3,11 @@
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
+#MYIP=$(wget -qO- ipv4.icanhazip.com);
 
-MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
-if [ "$MYIP" = "" ]; then
-	MYIP=$(wget -qO- ipv4.icanhazip.com)
-
-# go to root
-cd /root
+# ipvp
+IPADDRESS=`ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{print $1}' | head -1`
+IPADD="s/ipaddresxxx/$IPADDRESS/g";
 
 # check registered ip
 wget -q -O IP https://raw.githubusercontent.com/mzkin/script/auto/IP.txt
@@ -48,6 +46,9 @@ if ! grep -w -q $MYIP IP; then
 	rm -f /root/IP
 	exit
 fi
+# go to root
+cd /root
+
 # clean
 apt-get clean
 # update
