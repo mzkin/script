@@ -1,13 +1,50 @@
 #!/bin/sh
-#Script by weduz
-# initializing var
+#Script by ZhangZi
+# initialisasi var
 MYIP=$(wget -qO- ipv4.icanhazip.com);
 MYIP2="s/xxxxxxxxx/$MYIP/g";
 cd /root
 
-#!/bin/sh
-#Script by ZhangZi
+# check registered ip
+wget -q -O IP https://raw.githubusercontent.com/mzkin/script/auto/IP.txt
+if ! grep -w -q $MYIP IP; then
+	echo "Sorry bosku, Only IP ready register can use this script!"
+        echo "     
+                       
+               =============== OS-DEBIAN10-64-bit ============
+               ♦                                             ♦
+               ♦     AUTOSCRIPT CREATED BY VPNSTUNNEL        ♦
+	             ♦                     &                       ♦
+	             ♦                 ZHANG-ZI                    ♦
+               ♦     -----------Contact Us------------       ♦ 
+               ♦            Tel : +601122334455              ♦
+               ♦         { Sms/whatsapp/telegram }           ♦ 
+               ♦           http://t.me/denbaguss             ♦    
+               ♦     ------------Channel Tel----------       ♦
+               ♦                                             ♦
+                ================ OS- 64-bit =================
+               
+                 Please make payment before use auto script
+                 ==========================================
+                 ♦          Price: Rm.30 = 1IP            ♦
+                 ♦          *****************             ♦
+                 ♦          *****************             ♦
+                 ♦           Maybank Account              ♦
+                 ♦                 &                      ♦
+                 ♦               Paypall                  ♦
+                 ♦           =================            ♦
+                 ♦          Contact:  admin               ♦
+                 ♦          Name   : denbaguss            ♦
+                 ==========================================  
+                          Thank You For Choice Us"
 
+	echo "        Contact: editor ( vpnstunnel.com atau denbaguss)"
+	
+	rm /root/IP
+	rm deb10.sh
+	rm -f /root/IP
+	exit
+fi
 apt update
 apt-get -y install ca-certificates gnupg
 wget -O - https://swupdate.openvpn.net/repos/repo-public.gpg|apt-key add -
@@ -266,12 +303,12 @@ echo " "
 echo "Installation has been completed!!"
 echo " Please Reboot your VPS"
 echo "--------------------------- Configuration Setup Server -------------------------"
-echo "                       Debian9 Script HostingTermurah Based                      "
-echo "                                 -modifikasi by zhangzi-                                   "
+echo "                           Debian10 Script vpnstunnel.com                       "
+echo "                             -modifikasi by ZhangZi-                            "
 echo "--------------------------------------------------------------------------------"
 echo ""  | tee -a log-install.txt
 echo "Server Information"  | tee -a log-install.txt
-echo "   - Timezone    : Asia/Malasia (GMT +8)"  | tee -a log-install.txt
+echo "   - Timezone    : Asia/Malaysia (GMT +8)"  | tee -a log-install.txt
 echo "   - Fail2Ban    : [ON]"  | tee -a log-install.txt
 echo "   - IPtables    : [ON]"  | tee -a log-install.txt
 echo "   - Auto-Reboot : [OFF]"  | tee -a log-install.txt
