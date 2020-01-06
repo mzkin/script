@@ -14,8 +14,8 @@ if ! grep -w -q $MYIP IP; then
                =============== OS-DEBIAN10-64-bit ============
                ♦                                             ♦
                ♦     AUTOSCRIPT CREATED BY VPNSTUNNEL        ♦
-	             ♦                     &                       ♦
-	             ♦                 ZHANG-ZI                    ♦
+	       ♦                     &                       ♦
+	       ♦                 ZHANG-ZI                    ♦
                ♦     -----------Contact Us------------       ♦ 
                ♦            Tel : +601122334455              ♦
                ♦         { Sms/whatsapp/telegram }           ♦ 
