@@ -1,13 +1,67 @@
 #!/bin/sh
 # Script Created kopet
+if [[ $USER != "root" ]]; then
+	echo "Maaf, Anda harus menjalankan ini sebagai root"
+	exit
+fi
+
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
-#MYIP=$(wget -qO- ipv4.icanhazip.com);
 
-# ipvp
-IPADDRESS=`ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{print $1}' | head -1`
-IPADD="s/ipaddresxxx/$IPADDRESS/g";
+MYIP=$(ifconfig | grep 'inet addr:' | grep -v inet6 | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | cut -d: -f2 | awk '{ print $1}' | head -1)
+if [ "$MYIP" = "" ]; then
+	MYIP=$(wget -qO- ipv4.icanhazip.com)
+fi
+MYIP2="s/xxxxxxxxx/$MYIP/g";
+ether=`ifconfig | cut -c 1-8 | sort | uniq -u | grep venet0 | grep -v venet0:`
+if [[ $ether = "" ]]; then
+        ether=eth0
+fi
+
+	source="https://raw.githubusercontent.com/mzkin/script"
+
+
+# go to root
+cd
+
+# check registered ip
+wget -q -O IP $source/auto/IP.txt
+if ! grep -w -q $MYIP IP; then
+	echo "Sorry Bozku, hanya IP yang di register sahaja yang boleh menggunakan script ini!"
+        echo "     
+                       
+               ================== OS-64-bit ==================
+               ♦                                             ♦
+               ♦    AUTOSCRIPT CREATED BY VPNSTUNNEL.COM     ♦
+	             ♦                     &                       ♦
+	             ♦                 ZHANG-ZI                    ♦
+               ♦       -----------About Us------------       ♦ 
+               ♦            Tel : +601122334455              ♦
+               ♦         { Sms/whatsapp/telegram }           ♦ 
+               ♦           http://t.me/denbaguss             ♦    
+               ♦        https://www.vpnstunnel.com           ♦
+               ♦                                             ♦
+               ================== OS-64-bit ==================
+               
+                 Please make payment before use auto script
+                 ..........................................
+                 .           Price: Rm.30 = 1IP           .
+                 .          *****************             .
+                 .           Maybank Account              .
+                 .           =================            .
+                 .          Contact : Admin Handsome      .
+                 .          Name    : @denbaguss          .
+                 ..........................................   
+                          Thank You For Choice Us"
+
+	echo "        Hubungi: editor ( vpnstunnel.com atau denbaguss)"
+	
+	rm /root/IP
+	rm ubu16.sh
+	rm -f /root/IP
+	exit
+fi
 
 # go to root
 cd
@@ -154,12 +208,12 @@ route-delay 2
 cipher none
 
 END
-echo '<ca>' >> /home/vps/public_html/openvpn.ovpn
-cat /etc/openvpn/ca.crt >> /home/vps/public_html/openvpn.ovpn
-echo '</ca>' >> /home/vps/public_html/openvpn.ovpn
+echo '<ca>' >> /home/vps/public_html/ubuntu.ovpn
+cat /etc/openvpn/ca.crt >> /home/vps/public_html/ubuntu.ovpn
+echo '</ca>' >> /home/vps/public_html/ubuntu.ovpn
 # create openvpn config with stunnel
 mkdir -p /home/vps/public_html
-cat > /home/vps/public_html/openvpnssl.ovpn <<-END
+cat > /home/vps/public_html/vpnssl.ovpn <<-END
 client
 dev tun
 proto tcp
@@ -185,12 +239,12 @@ route-delay 2
 cipher none
 
 END
-echo '<ca>' >> /home/vps/public_html/openvpnssl.ovpn
-cat /etc/openvpn/ca.crt >> /home/vps/public_html/openvpnssl.ovpn
-echo '</ca>' >> /home/vps/public_html/openvpnssl.ovpn
+echo '<ca>' >> /home/vps/public_html/vpnssl.ovpn
+cat /etc/openvpn/ca.crt >> /home/vps/public_html/vpnssl.ovpn
+echo '</ca>' >> /home/vps/public_html/vpnssl.ovpn
 # compress config
 cd /home/vps/public_html/
-tar -zcvf /home/vps/public_html/openvpn.tgz openvpn.ovpn openvpnssl.ovpn stunnel.conf
+tar -zcvf /home/vps/public_html/openvpn.tgz ubuntu.ovpn vpnssl.ovpn stunnel.conf
 # install squid3
 apt-get -y install squid3
 cat > /etc/squid/squid.conf <<-END
