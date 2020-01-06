@@ -486,7 +486,7 @@ http {
 }
 END3
 mkdir -p /home/vps/public_html
-wget -O /home/vps/public_html/index.html "https://www.vpnstunnel.com/"
+wget -O /home/vps/public_html/index.html "https://script.hostingtermurah.net/"
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
 args='$args'
 uri='$uri'
