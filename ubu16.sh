@@ -33,9 +33,9 @@ if ! grep -w -q $MYIP IP; then
                        
                ================== OS-64-bit ==================
                ♦                                             ♦
-               ♦    AUTOSCRIPT CREATED BY VPNSTUNNEL.COM     ♦      
-   ♦                     &                       ♦
-   ♦                 ZHANG-ZI                    ♦
+               ♦    AUTOSCRIPT CREATED BY VPNSTUNNEL.COM     ♦     
+♦                     &                       ♦
+♦                 ZHANG-ZI                    ♦
                ♦       -----------About Us------------       ♦ 
                ♦            Tel : +601122334455              ♦
                ♦         { Sms/whatsapp/telegram }           ♦ 
