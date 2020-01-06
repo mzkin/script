@@ -1,10 +1,5 @@
 #!/bin/sh
 # Script Created kopet
-if [[ $USER != "root" ]]; then
-	echo "Maaf, Anda harus menjalankan ini sebagai root"
-	exit
-fi
-
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
 OS=`uname -m`;
@@ -14,7 +9,7 @@ if [ "$MYIP" = "" ]; then
 	MYIP=$(wget -qO- ipv4.icanhazip.com)
 
 # go to root
-cd
+cd /root
 
 # check registered ip
 wget -q -O IP https://raw.githubusercontent.com/mzkin/script/auto/IP.txt
@@ -25,8 +20,8 @@ if ! grep -w -q $MYIP IP; then
                ================== OS-64-bit ==================
                ♦                                             ♦
                ♦    AUTOSCRIPT CREATED BY VPNSTUNNEL.COM     ♦     
-♦                     &                       ♦
-♦                 ZHANG-ZI                    ♦
+     ♦                     &                       ♦
+     ♦                 ZHANG-ZI                    ♦
                ♦       -----------About Us------------       ♦ 
                ♦            Tel : +601122334455              ♦
                ♦         { Sms/whatsapp/telegram }           ♦ 
@@ -53,9 +48,6 @@ if ! grep -w -q $MYIP IP; then
 	rm -f /root/IP
 	exit
 fi
-
-# go to root
-cd
 # clean
 apt-get clean
 # update
